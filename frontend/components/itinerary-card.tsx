@@ -5,11 +5,11 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { type Itinerary, getTypeColor, getTypeLabel } from '@/lib/attractions'
-import { 
-  X, 
-  Clock, 
-  MapPin, 
-  Banknote, 
+import {
+  X,
+  Clock,
+  MapPin,
+  Banknote,
   Navigation,
   ChevronDown,
   Car
@@ -47,12 +47,12 @@ export default function ItineraryCard({
   return (
     <Card className={cn(
       "z-40 shadow-2xl border-0 overflow-hidden flex flex-col",
-      isFramed 
-        ? "absolute bottom-2 left-2 right-2 max-h-[60%]" 
+      isFramed
+        ? "absolute bottom-2 left-2 right-2 max-h-[60%]"
         : "fixed bottom-4 left-4 right-4 sm:left-4 sm:right-auto sm:w-[380px] max-h-[50vh]"
     )}>
       {/* Header */}
-      <div 
+      <div
         className={cn(
           "bg-primary text-primary-foreground flex items-center justify-between cursor-pointer",
           isFramed ? "px-3 py-2" : "px-4 py-3"
@@ -75,7 +75,7 @@ export default function ItineraryCard({
             isFramed ? "h-3 w-3" : "h-4 w-4",
             isExpanded ? '' : 'rotate-180'
           )} />
-          <button 
+          <button
             onClick={(e) => {
               e.stopPropagation()
               onClose()
@@ -112,7 +112,7 @@ export default function ItineraryCard({
           </div>
 
           {/* Route details */}
-          <ScrollArea className={cn("flex-1 min-h-0", isFramed ? "max-h-[200px]" : "max-h-[280px]")}>
+          <ScrollArea className={cn("flex-1 min-h-0", isFramed ? "max-h-50 overflow-y-auto" : "max-h-70 overflow-y-auto")}>
             <div className={isFramed ? "p-2" : "p-3"}>
               {/* Starting point */}
               <div className={`flex ${isFramed ? 'gap-2 mb-1.5' : 'gap-3 mb-2'}`}>
@@ -171,7 +171,7 @@ export default function ItineraryCard({
                     {/* Destination */}
                     <div className={`flex ${isFramed ? 'gap-2 mb-1.5' : 'gap-3 mb-2'}`}>
                       <div className="flex flex-col items-center">
-                        <div 
+                        <div
                           className={cn(
                             "rounded-full border-2 border-white shadow",
                             isFramed ? "w-3 h-3" : "w-4 h-4"
@@ -189,8 +189,8 @@ export default function ItineraryCard({
                             "text-muted-foreground",
                             isFramed ? "text-[10px]" : "text-xs"
                           )}>Stop {index + 1}</span>
-                          <Badge 
-                            variant="outline" 
+                          <Badge
+                            variant="outline"
                             className={isFramed ? "text-[9px] px-1 py-0" : "text-[10px] px-1.5 py-0"}
                             style={{ borderColor: getTypeColor(destination.type), color: getTypeColor(destination.type) }}
                           >
@@ -214,8 +214,8 @@ export default function ItineraryCard({
           </ScrollArea>
 
           {/* Action button */}
-          <div className={cn("border-t", isFramed ? "p-2" : "p-3")}>
-            <Button 
+          <div className={cn("border-t bg-background relative", isFramed ? "p-2" : "p-3")}>
+            <Button
               className={`w-full ${isFramed ? 'h-9 text-sm' : 'h-10 text-base'}`}
               onClick={onBookRide}
             >
