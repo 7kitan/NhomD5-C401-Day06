@@ -3,6 +3,7 @@
 Hỗ trợ user đặt tuyến đi xe du lịch local, cùng với recommendation các địa điểm tham quan và auto đặt xe
 
 ### Level: Demo Application (screenshot dưới đây)
+![demo screenshot](SCR-20260409-pocf.png)
 
 ## Phân Công
 
