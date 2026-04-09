@@ -72,7 +72,4 @@ Khi sử dụng ứng dụng, hãy quan sát Terminal của Backend để thấy
 ## 🔗 Liên kết Repository
 Dự án được lưu trữ tại: [https://github.com/7kitan/day6_hackathon_A3](https://github.com/7kitan/day6_hackathon_A3)
 
----
-*Phát triển bởi Nguyen Bach - Hackathon AI Thực Chiến 2026.*
-# day6_hackathon_A3
-# day6_hackathon_A3
+
