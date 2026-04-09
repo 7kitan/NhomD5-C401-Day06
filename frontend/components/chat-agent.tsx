@@ -54,7 +54,7 @@ export default function ChatAgent({
 
   const [input, setInput] = useState('')
   const [locationName, setLocationName] = useState<string | null>(null)
-  
+
   // Use a ref to always have the latest location name in the transport closure
   const locationRef = useRef<string | null>(null)
   useEffect(() => {
@@ -70,14 +70,14 @@ export default function ChatAgent({
           try {
             const body = JSON.parse(options.body as string)
             body.location_name = locationRef.current
-            
+
             // Also ensure we have the latest coordinates
             const currentLat = selectedAttractions[0]?.coordinates[0] || USER_LOCATION[0]
             const currentLng = selectedAttractions[0]?.coordinates[1] || USER_LOCATION[1]
             body.lat = currentLat
             body.lng = currentLng
             body.radius = radius
-            
+
             options.body = JSON.stringify(body)
           } catch (e) {
             console.error("❌ [MANUAL STREAM] Error injecting body params:", e)
@@ -120,7 +120,7 @@ export default function ChatAgent({
                 // Update React state manually with a safety check for duplicates
                 setMessages((prev: any[]) => {
                   const existingIdx = prev.findIndex(m => m.id === assistantMessageId);
-                  
+
                   if (existingIdx === -1) {
                     // Create new assistant message
                     console.log("🆕 [MANUAL STREAM] Creating new assistant message entry");
@@ -204,14 +204,14 @@ export default function ChatAgent({
 
     // Check for actions in the latest assistant message
     const lastMessage = messages[messages.length - 1]
-    
+
     if (
-      lastMessage && 
-      lastMessage.role === 'assistant' && 
-      status === 'ready' && 
+      lastMessage &&
+      lastMessage.role === 'assistant' &&
+      status === 'ready' &&
       !processedMessageIds.current.has(lastMessage.id)
     ) {
-      // Lấy nội dung GỐC để quét Action
+      // Lấy nội dung GỐC để quét Action 
       let rawText = ''
       const lastMsgAny = lastMessage as any
       if (typeof lastMsgAny.content === 'string') {
@@ -223,12 +223,12 @@ export default function ChatAgent({
       }
 
       const jsonMatch = rawText.match(/```json\n([\s\S]*?)\n```/)
-      
+
       if (jsonMatch) {
         try {
           const action = JSON.parse(jsonMatch[1])
           processedMessageIds.current.add(lastMessage.id)
-          
+
           if ((action.action === 'BUILD_ITINERARY' || action.action === 'SUGGEST_LOCATIONS') && action.ids) {
             const selected = action.ids
               .map((id: string) => attractions.find(a => a.id === id))
@@ -278,12 +278,12 @@ export default function ChatAgent({
 
       const lat = selectedAttractions[0]?.coordinates[0] || USER_LOCATION[0]
       const lng = selectedAttractions[0]?.coordinates[1] || USER_LOCATION[1]
-      
+
       try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
         const res = await fetch(`${apiUrl}/reverse-geocode?lat=${lat}&lng=${lng}`)
         const data = await res.json()
-        
+
         if (data.location_name && data.location_name !== "Unknown location") {
           console.log("📍 Location identified and cached:", data.location_name)
           setLocationName(data.location_name)
@@ -321,7 +321,7 @@ export default function ChatAgent({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!input.trim() || isLoading) return
-    
+
     const userMessage = input.trim()
     setInput('')
 
@@ -347,7 +347,7 @@ export default function ChatAgent({
   // Helper to get text from message parts or content and clean JSON actions
   const getMessageText = (message: any): string => {
     let text = ''
-    
+
     // 1. Extract raw text from different possible message formats
     if (typeof message.content === 'string') {
       text = message.content
@@ -362,7 +362,7 @@ export default function ChatAgent({
     } else if (typeof message === 'string') {
       text = message
     }
-    
+
     // 2. Strip out JSON action blocks (e.g., ```json\n...\n```) from display
     // These are processed in an effect but should be hidden from UI
     return text.replace(/```json\n[\s\S]*?\n```/g, '').trim()
@@ -490,8 +490,8 @@ export default function ChatAgent({
                   </div>
                   <div className={cn(
                     "rounded-2xl px-4 py-2",
-                    message.role === 'user' 
-                      ? "bg-primary text-primary-foreground" 
+                    message.role === 'user'
+                      ? "bg-primary text-primary-foreground"
                       : "bg-muted text-foreground"
                   )}>
                     <p className={cn(
