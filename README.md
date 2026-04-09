@@ -2,6 +2,8 @@
 
 Hỗ trợ user đặt tuyến đi xe du lịch local, cùng với recommendation các địa điểm tham quan và auto đặt xe
 
+**Pain point**: Khách du lịch cần đặt xe liên tục giữa các điểm du lịch, bất tiện. App help đặt lộ trình full đi cùng với dịch vụ
+
 ### Level: Demo Application - Đỏ SM (screenshot dưới đây)
 <div style="display: flex; gap: 10px;">
   <img src="./SCR-20260409-pocf.png" height="500">
