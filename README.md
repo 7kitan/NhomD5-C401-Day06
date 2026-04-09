@@ -3,7 +3,11 @@
 Hỗ trợ user đặt tuyến đi xe du lịch local, cùng với recommendation các địa điểm tham quan và auto đặt xe
 
 ### Level: Demo Application - Đỏ SM (screenshot dưới đây)
-<img src="./SCR-20260409-pocf.png" height="500">
+<div style="display: flex; gap: 10px;">
+  <img src="./SCR-20260409-pocf.png" height="500">
+  <img src="./SCR-20260409-pwcg.png" height="500">
+  <img src="./SCR-20260409-ptof.png" height="500">
+</div>
 
 
 ## Phân Công
